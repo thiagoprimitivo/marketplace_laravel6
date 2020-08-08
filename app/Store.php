@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
+    protected $fillable = ['name', 'description', 'phone', 'mobile_phone', 'slug'];
+
     /**
      * Relação com o usuário - Store belongsTo User
      */
