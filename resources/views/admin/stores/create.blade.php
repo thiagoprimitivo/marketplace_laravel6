@@ -1,6 +1,7 @@
 <h1>Criar loja</h1>
 
 <form action="/admin/stores/store" method="post">
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
     <div>
         <label>Nome Loja</label>
         <input type="text" name="name">
