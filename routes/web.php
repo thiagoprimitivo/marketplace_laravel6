@@ -26,5 +26,7 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
         Route::get('/destroy/{store}', 'StoreController@destroy')->name('destroy');
     });
 
+    Route::resource('products', 'ProductController');
+
 });
 
