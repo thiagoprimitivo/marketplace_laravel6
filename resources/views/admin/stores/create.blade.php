@@ -5,7 +5,7 @@
 
 <form action="{{route('admin.stores.store')}}" method="post">
     @csrf
-    
+
     <div class="form-group">
         <label>Nome Loja</label>
         <input type="text" name="name" class="form-control">
@@ -29,15 +29,6 @@
     <div class="form-group">
         <label>Slug</label>
         <input type="text" name="slug" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label>Usuário</label>
-        <select name="user" class="form-control">
-            @foreach($users as $user)
-                <option value="{{$user->id}}">{{$user->name}}</option>
-            @endforeach
-        </select>
     </div>
 
     <div>
