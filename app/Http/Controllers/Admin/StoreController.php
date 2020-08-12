@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreRequest;
+
 class StoreController extends Controller
 {
     public function index()
@@ -20,7 +22,7 @@ class StoreController extends Controller
         return view('admin.stores.create', compact('users'));
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $data = $request->all();
 
@@ -38,7 +40,7 @@ class StoreController extends Controller
         return view('admin.stores.edit', compact('store'));
     }
 
-    public function update(Request $request, $store)
+    public function update(StoreRequest $request, $store)
     {
         $data = $request->all();
 
