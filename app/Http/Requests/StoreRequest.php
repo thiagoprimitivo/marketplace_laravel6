@@ -30,4 +30,12 @@ class StoreRequest extends FormRequest
             'mobile_phone' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Campo obrigatório!', //Utilizando o :attribute é possível exibir o nome do campo
+            'min'      => 'Campo deve ter no mínimo :min caracteres!'
+        ];
+    }
 }
