@@ -21,7 +21,7 @@
                     <td>{{$store->products->count()}}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="{{route('admin.stores.edit', ['store' => $store->id])}}" class="btn btn-sm btn-primary">Editar</a>
+                            <a href="{{route('admin.stores.edit', ['store' => $store->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
                             <form action="{{route('admin.stores.destroy', ['store' => $store->id])}}" method="post">
                                 @csrf
                                 @method("DELETE")
