@@ -57,7 +57,13 @@
         </p>
 
         <label>Logo da Loja</label>
-        <input type="file" name="logo" class="form-control">
+        <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror">
+
+        @error('logo')
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+        @enderror
     </div>
 
     <div class="form-group">
