@@ -27,4 +27,21 @@ class CartController extends Controller
         flash('Produto Adicionado no Carrinho!')->success();
         return redirect()->route('product.single', ['slug' => $product['slug']]);
     }
+
+    public function remove($slug)
+    {
+        if (!session()->has('cart'))
+            return redirect()->route('cart.index');
+
+        $products = session()->get('cart');
+
+        $products = array_filter($products, function($product) use($slug){
+            return $product['slug'] != $slug;
+        });
+
+        session()->put('cart', $products);
+
+        flash('Produto removido do carrinho de comprar')->success();
+        return redirect()->route('cart.index');
+    }
 }
