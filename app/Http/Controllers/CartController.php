@@ -41,7 +41,15 @@ class CartController extends Controller
 
         session()->put('cart', $products);
 
-        flash('Produto removido do carrinho de comprar')->success();
+        flash('Produto Removido do Carrinho de Compras!')->success();
+        return redirect()->route('cart.index');
+    }
+
+    public function cancel()
+    {
+        session()->forget('cart');
+
+        flash('Compra Cancelada com Sucesso!')->success();
         return redirect()->route('cart.index');
     }
 }
