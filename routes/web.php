@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/product/{slug}', 'HomeController@single')->name('product.single');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
