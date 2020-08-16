@@ -14,8 +14,6 @@ class CheckoutController extends Controller
 
         $this->makePagSeguroSession();
 
-        print(session()->get('pagseguro_session_code'));
-
         return view('checkout');
     }
 
