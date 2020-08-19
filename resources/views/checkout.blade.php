@@ -12,6 +12,12 @@
             <form action="" method="POST">
                 <div class="row">
                     <div class="col-md-12 form-group">
+                        <label>Nome no Cartão</label>
+                        <input type="text" class="form-control" name="card_name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
                         <label>Número do Cartão <span class="brand"></span></label>
                         <input type="text" class="form-control" name="card_number">
                         <input type="hidden" name="card_brand">
@@ -53,6 +59,7 @@
 
     <script>
 
+        let amountTotal = '{{$cartItems}}';
         let cardNumber = document.querySelector('input[name=card_number]');
         let spanBrand = document.querySelector('span.brand');
 
@@ -65,7 +72,7 @@
                         spanBrand.innerHTML = imgFlag;
                         document.querySelector('input[name=card_brand]').value = res.brand.name;
 
-                        getInstallments(40, res.brand.name);
+                        getInstallments(amountTotal, res.brand.name);
                     },
                     error: function(err) {
                         console.log(err);
@@ -101,6 +108,7 @@
                 card_token: token,
                 hash: PagSeguroDirectPayment.getSenderHash(),
                 installment: document.querySelector('select.selectInstallments').value,
+                card_name: document.querySelector('input[name=card_name]').value,
                 _token: '{{csrf_token()}}'
             };
 
