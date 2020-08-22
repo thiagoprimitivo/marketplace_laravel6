@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use App\Store;
 
@@ -19,7 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         $products = $this->product->limit(self::QTD_PRODUCTS_HOME)->orderBy('id', 'DESC')->get();
-        $stores= Store::limit(self::QTD_STORES_HOME)->orderBy('id', 'ASC')->get();
+        $stores= Store::limit(self::QTD_STORES_HOME)->orderBy('id', 'DESC')->get();
 
         return view('welcome', compact('products', 'stores'));
     }
