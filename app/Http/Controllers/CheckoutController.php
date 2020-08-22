@@ -118,10 +118,10 @@ class CheckoutController extends Controller
             'pagseguro_code' => $result->getCode(),
             'pagseguro_status' => $result->getStatus(),
             'itens' => serialize($cartItems),
-            'store_id' => 42
+            'store_id' => 44
         ];
 
-        $user->order()->create($userOrder);
+        $user->orders()->create($userOrder);
 
         return response()->json([
             'data' => [
