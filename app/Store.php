@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
     use HasSlug;
-    
+
     protected $fillable = ['name', 'description', 'phone', 'mobile_phone', 'slug', 'logo'];
 
     /**
@@ -33,5 +33,10 @@ class Store extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(UserOrder::class);
     }
 }
