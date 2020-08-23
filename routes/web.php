@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('categories', 'CategoryController');
 
         Route::post('photos/remove', 'ProductPhotoController@removePhoto')->name('photo.remove');
+
+        Route::get('orders/my', 'OrderController@index')->name('orders.my');
     });
 });
 
