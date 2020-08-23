@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h2>Pedidos Recebidos</h2>
+        <h2>Meus Pedidos</h2>
         <hr>
     </div>
 
     <div class="col-12">
         <div class="accordion" id="accordionExample">
-            @forelse ($orders as $key => $order)
+            @forelse ($userOrders as $key => $order)
                 <div class="card">
                     <div class="card-header" id="heading{{$key}}">
                         <h2 class="mb-0">
@@ -24,9 +24,9 @@
                             <ul>
                                 @php
                                     $items = unserialize($order->itens);
-                                    $userStoreId = auth()->user()->store->id;
                                 @endphp
-                                @foreach (filterItemsByStoreId($items, $userStoreId) as $item)
+
+                                @foreach ($items as $item)
                                     <li>
                                         {{$item['name']}} | R$ {{number_format($item['price'] * $item['amount'], 2, ',', '.')}} <br>
                                         Quantidade pedida: {{$item['amount']}}
@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-12">
-            {{$orders->links()}}
+            {{$userOrders->links()}}
         </div>
     </div>
 </div>
