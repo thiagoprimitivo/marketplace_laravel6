@@ -12,7 +12,7 @@ class UserRegisteredEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user;
+    public $user;
 
     /**
      * Create a new message instance.
@@ -31,6 +31,10 @@ class UserRegisteredEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.user-registered');
+        return $this
+            ->subject('Conta Criada com Sucesso!')
+            ->replyTo('contato@marketplacel6.com.br')
+            ->view('emails.user-registered');
+            //->with(['user' => $this->user]); caso a variável esteja como private
     }
 }
