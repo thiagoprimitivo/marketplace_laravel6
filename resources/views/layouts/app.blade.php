@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marketplace L6</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -35,6 +36,12 @@
                 </ul>
                 <div class="my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a href="{{route('admin.notification.index')}}" class="nav-link">
+                                <span class="badge badge-danger">{{auth()->user()->unreadNotifications->count()}}</span>
+                                <i class="fa fa-bell"></i>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <span class="nav-link">{{auth()->user()->name}}</span>
                         </li>
