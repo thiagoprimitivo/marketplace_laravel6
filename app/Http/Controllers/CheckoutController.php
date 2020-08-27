@@ -58,8 +58,8 @@ class CheckoutController extends Controller
             // Notificar loja, sobre novo pedido
             $store = (new Store())->notifyStoreOwners($stores);
 
-            //session()->forget('cart');
-            //session()->forget('pagseguro_session_code');
+            session()->forget('cart');
+            session()->forget('pagseguro_session_code');
 
             return response()->json([
                 'data' => [
