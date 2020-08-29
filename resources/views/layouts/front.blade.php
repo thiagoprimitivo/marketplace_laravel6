@@ -39,11 +39,6 @@
 
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
-                @auth
-                    <li class="nav-item @if(request()->is('my-orders')) active @endif">
-                        <a href="{{route('user.orders')}}" class="nav-link">Meus Pedidos</a>
-                    </li>
-                @endauth
                 <li class="nav-item">
                     <a href="{{route('cart.index')}}" class="nav-link">
                         @if (session()->has('cart'))
@@ -52,6 +47,17 @@
                         <i class="fa fa-shopping-cart"></i>
                     </a>
                 </li>
+                @auth
+                    <li class="nav-item @if(request()->is('my-orders')) active @endif">
+                        <a href="{{route('user.orders')}}" class="nav-link">Meus Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="document.querySelector('form.logout').submit();">Sair</a>
+                        <form action="{{route('logout')}}" class="logout" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

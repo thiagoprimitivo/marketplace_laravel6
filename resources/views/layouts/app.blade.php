@@ -46,7 +46,7 @@
                             <span class="nav-link">{{auth()->user()->name}}</span>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="document.querySelector('form.logout').submit();">Sair</a>
+                            <a class="nav-link" href="#" onclick="document.querySelector('form.logout').submit();">Sair</a>
                             <form action="{{route('logout')}}" class="logout" method="POST" style="display: none;">
                                 @csrf
                             </form>
