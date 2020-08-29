@@ -27,8 +27,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $userStore = auth()->user()->store;
-        $products = $userStore->products()->paginate(10);
+        $user = auth()->user();
+
+        if (!$user->store()->exists()) {
+            flash('É preciso criar uma loja, para poder cadastrar produtos!')->warning();
+            return redirect()->route('admin.stores.index');
+        }
+
+        $products = $user->store->products()->paginate(10);
 
         return view('admin.products.index', compact('products'));
     }
@@ -113,7 +119,7 @@ class ProductController extends Controller
 
         if (!is_null($categories))
             $product->categories()->sync($categories);
-        
+
 
         if ($request->hasFile('photos')) {
             $images = $this->imageUpload($request->file('photos'), 'image');
