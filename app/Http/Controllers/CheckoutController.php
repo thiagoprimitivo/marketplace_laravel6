@@ -93,7 +93,7 @@ class CheckoutController extends Controller
     {
         $notification = new Notification();
 
-        
+        dd($notification->getTransaction());
     }
 
 
