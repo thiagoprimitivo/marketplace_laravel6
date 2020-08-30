@@ -97,7 +97,9 @@ class CheckoutController extends Controller
             $notification = new Notification();
             $notification = $notification->getTransaction();
 
-            $userOrder = UserOrder::whereReference($notification->getReference());
+            $reference = base64_decode($notification->getReference());
+
+            $userOrder = UserOrder::whereReference($reference);
             $userOrder->update([
                 'pagseguro_status' => $notification->getStatus()
             ]);
