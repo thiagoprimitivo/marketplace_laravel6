@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Payment\PagSeguro\CreditCard;
+use App\Payment\PagSeguro\Notification;
 use App\Store;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class CheckoutController extends Controller
 {
@@ -38,7 +40,7 @@ class CheckoutController extends Controller
             $user = auth()->user();
             $cartItems = session()->get('cart');
             $stores = array_unique(array_column($cartItems, 'store_id'));
-            $reference = 'XPTO';
+            $reference = 'XPTO'; //Uuid::uuid4()
 
             $creditCardPayment = new CreditCard($cartItems, $user, $dataPost, $reference);
             $result = $creditCardPayment->doPayment();
@@ -86,6 +88,14 @@ class CheckoutController extends Controller
     {
         return view('thanks');
     }
+
+    public function notification()
+    {
+        $notification = new Notification();
+
+        
+    }
+
 
     private function makePagSeguroSession()
     {
