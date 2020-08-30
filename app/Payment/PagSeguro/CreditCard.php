@@ -28,7 +28,7 @@ class CreditCard
 
         foreach($this->items as $item) {
             $creditCard->addItems()->withParameters(
-                $this->reference,
+                $item['id'],
                 $item['name'],
                 $item['amount'],
                 $item['price']
