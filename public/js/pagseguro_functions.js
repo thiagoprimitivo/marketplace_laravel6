@@ -1,4 +1,4 @@
-function processPayment(token) {
+function processPayment(token, buttonTarget) {
     let data = {
         card_token: token,
         hash: PagSeguroDirectPayment.getSenderHash(),
@@ -17,6 +17,9 @@ function processPayment(token) {
             window.location.href = `${urlThanks}?order=${res.data.order}`;
         },
         error: function(err) {
+            buttonTarget.disabled = false;
+            buttonTarget.innerHTML = "Efetuar Pagamento";
+            
             let message = JSON.parse(err.responseText);
             document.querySelector('div.msg').innerHTML = showErrorMessages(message.data.message.error.message);
         }

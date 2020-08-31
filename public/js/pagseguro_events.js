@@ -27,6 +27,10 @@ let submitButton = document.querySelector('button.processCheckout');
 submitButton.addEventListener('click', function(event){
 
     event.preventDefault();
+    let buttonTarget = event.target;
+
+    buttonTarget.disabled = true;
+    buttonTarget.innerHTML = "Carregando...";
 
     PagSeguroDirectPayment.createCardToken({
         cardNumber: document.querySelector('input[name=card_number]').value,
@@ -35,9 +39,12 @@ submitButton.addEventListener('click', function(event){
         expirationMonth: document.querySelector('input[name=card_month]').value,
         expirationYear: document.querySelector('input[name=card_year]').value,
         success: function(res) {
-            processPayment(res.card.token);
+            processPayment(res.card.token, buttonTarget);
         },
         error: function(err) {
+            buttonTarget.disabled = false;
+            buttonTarget.innerHTML = "Efetuar Pagamento";
+
             console.log(err.errors);
 
             for(let i in err.errors) {
