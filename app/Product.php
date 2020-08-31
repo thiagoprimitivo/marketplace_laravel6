@@ -2,14 +2,15 @@
 
 namespace App;
 
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
+//use Spatie\Sluggable\HasSlug;
+//use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use App\Traits\SlugTrait;
 
 class Product extends Model
 {
     //use HasSlug;
+    use SlugTrait;
 
     protected $fillable = ['name', 'description', 'body', 'price', 'slug'];
 
@@ -24,19 +25,6 @@ class Product extends Model
 
     public function getThumbAttribute() {
         return $this->photos->first()->image;
-    }
-
-    public function setNameAttribute($value) {
-
-        $slug = Str::slug($value);
-        $matchs = $this->uniqueSlug($slug);
-
-        $this->attributes['name'] = $value;
-        $this->attributes['slug'] = $matchs ? $slug . '-' .$matchs : $slug;
-    }
-
-    public function uniqueSlug($slug) {
-        $matchs = $this->whereRaw("slug REGEXP '^{$slug}(-[0-9]*)?$'")->count();
     }
 
     public function store() {
