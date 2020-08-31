@@ -15,25 +15,25 @@ class Product extends Model
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
-    {
+    public function getSlugOptions() : SlugOptions {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 
-    public function store()
-    {
+    public function getThumbAttribute() {
+        return $this->photos->first()->image;
+    }
+
+    public function store() {
         return $this->belongsTo(Store::class);
     }
 
-    public function categories()
-    {
+    public function categories() {
         return $this->belongsToMany(Category::class);
     }
 
-    public function photos()
-    {
+    public function photos() {
         return $this->hasMany(ProductPhoto::class);
     }
 }
